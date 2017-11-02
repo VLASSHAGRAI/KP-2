@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {   
+            FileStream file1 = new FileStream ("C:\\data1.txt",FileMode.Open);
+            FileStream file3 = new FileStream("D:\\data2.txt", FileMode.Create);
+            StreamReader reader = new StreamReader(file1);
+            string str = reader.ReadToEnd();
+            str = new string(str.Where(ch => !char.IsLetter(ch)).ToArray());
+       
+            StreamWriter file2 = new StreamWriter(file3);
+            file2.Write(str);
+            file2.Close();
+            
+        }
+    }
+}
